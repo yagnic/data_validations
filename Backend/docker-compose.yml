@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:80"  # Expose the React app on port 3000
+    depends_on:
+      - backend  # Ensure backend starts first
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "5000:5000"  # Expose the Flask API on port 5000
+    environment:
+      - FLASK_ENV=production
